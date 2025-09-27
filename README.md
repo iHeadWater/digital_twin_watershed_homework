@@ -6,6 +6,45 @@
 
 本项目提供了从获取公开降雨数据到高级算法扩展的完整流程，涵盖了现代降雨数据处理的理论基础、算法实现、质量控制和性能优化等各个方面。
 
+## 快速开始
+
+### 环境准备
+
+**方式一：完整安装（推荐用于完整学习）**
+```bash
+# 安装所有依赖（包括高级功能）
+pip install -r requirements.txt
+```
+
+**方式二：最小安装（仅核心功能）**
+```bash
+# 安装核心依赖（适合快速体验）
+pip install -r requirements-minimal.txt
+```
+
+**方式三：conda环境（推荐）**
+```bash
+# 创建专用环境
+conda create -n rainfall_algo python=3.9
+conda activate rainfall_algo
+
+# 安装地理空间依赖
+conda install -c conda-forge geopandas cartopy
+
+# 安装其他依赖
+pip install -r requirements.txt
+```
+
+### 运行教程
+
+```bash
+# 启动Jupyter Notebook
+jupyter notebook
+
+# 或使用JupyterLab（更现代的界面）
+jupyter lab
+```
+
 ## 教程结构
 
 ### 第一部分：数据获取 (`1_data_acquisition.ipynb`)
@@ -148,44 +187,6 @@
 - 适配从嵌入式到集群的各种硬件
 - 模块化设计便于功能扩展
 
-## 快速开始
-
-### 环境准备
-
-**方式一：完整安装（推荐用于完整学习）**
-```bash
-# 安装所有依赖（包括高级功能）
-pip install -r requirements.txt
-```
-
-**方式二：最小安装（仅核心功能）**
-```bash
-# 安装核心依赖（适合快速体验）
-pip install -r requirements-minimal.txt
-```
-
-**方式三：conda环境（推荐）**
-```bash
-# 创建专用环境
-conda create -n rainfall_algo python=3.8
-conda activate rainfall_algo
-
-# 安装地理空间依赖
-conda install -c conda-forge geopandas cartopy
-
-# 安装其他依赖
-pip install -r requirements.txt
-```
-
-### 运行教程
-
-```bash
-# 启动Jupyter Notebook
-jupyter notebook
-
-# 或使用JupyterLab（更现代的界面）
-jupyter lab
-```
 
 **学习路径：**
 1. `1_data_acquisition.ipynb` - 数据获取基础
@@ -205,15 +206,6 @@ jupyter lab
 4. 推送到分支 (`git push origin feature/AmazingFeature`)
 5. 开启Pull Request
 
-## 许可证
-
-本项目采用MIT许可证 - 详见 [LICENSE](LICENSE) 文件。
-
-## 联系方式
-
-如有问题或建议，请通过以下方式联系：
-- 提交Issue：[GitHub Issues](https://github.com/your-repo/rainfall_algorithms/issues)
-- 邮件联系：your.email@example.com
 
 ---
 
