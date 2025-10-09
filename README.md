@@ -25,9 +25,9 @@
 
 ## 快速开始
 
-- 登录服务器使用，输入用户名和密码 http://jupyterhub.waterism.com:666/
+- 方式一：登录服务器使用，输入用户名和密码 http://jupyterhub.waterism.com:666/
 
-- 本地用IDE打开本项目文件夹
+- 方式二：本地用IDE打开本项目文件夹
 
 ### 环境准备
 
@@ -43,7 +43,6 @@ conda activate prcp_basin_mean
 pip install -r requirements.txt
 ```
 
-
 ## 教程结构
 
 ### 第一部分：数据获取 (`1_data_acquisition.ipynb`)
@@ -57,7 +56,7 @@ pip install -r requirements.txt
 
 
 ### 第二部分：算法实现与性能对比 (`2_data_processing.ipynb`)
-使用面积占比的流域平均雨量计算算法
+使用面积占比的流域平均雨量计算算法，并得出用时长短
 
 
 ### 第三部分：算法扩展与优化 (`3_extensions.ipynb`)
