@@ -125,17 +125,21 @@ jupyter notebook
 完成此函数后方可正常训练模型并获得验证集 NSE 指标。
 
 ### 第一部分：获取数据 (`1_获取数据.ipynb`)
-- 初始化并检查 CAMELS 数据目录与缓存目录；
-- 读取流量 `camels_streamflow.nc`、强迫 `camels_daymet_forcing.nc` 与属性 `camels_attributes_v2.0.feather`；
-- 示范按 `basin`/`time` 选择与可视化（`xarray` 懒加载）。
+- 本地/服务器两种运行方式说明；配置 `hydrodataset` 路径与 ROOT_DIR 校验；
+- 本地数据文件校验单元：检查 `camels_streamflow.nc`、`camels_daymet_forcing.nc`、`camels_attributes_v2.0.feather` 是否存在；
+- 读取流量、强迫与属性数据；
+- 示例：按 `basin`/`time` 选择与可视化（`xarray` 懒加载）。
 
 ### 第二部分：PyTorch 实现 LSTM-CAMELS (`2_PyTorch实现LSTM-CAMELS.ipynb`)
 - `CamelsDataset`：计算/复用均值与标准差，局地归一化强迫/属性/流量，构造样本查找表；
+- `local_denormalization`：用于将 `streamflow` 预测从标准化空间反变换回原尺度；
 - `LSTM_CAMELS`：两层 LSTM，尾部全连接，仅用最后时刻隐状态进行回归预测。
 
 ### 第三部分：训练与评估 (`3_训练.ipynb`)
+- 流域选择：默认以单个索引 `i` 选择一个流域；备选支持“前 `basins_num` 个”与“索引区间 `[start_idx:end_idx)`”多流域选择；
 - 训练与评估函数（`train_epoch`/`eval_model`）；
 - 数据拆分：训练/验证/测试时间段与变量选择；
+- 可调超参数：`sequence_length`、`batch_size`、`hidden_size`、`learning_rate`、`n_epochs`；
 - 训练循环与验证集 NSE 输出；
 - 测试集评估与结果曲线绘制。
 
