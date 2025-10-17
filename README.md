@@ -142,6 +142,7 @@ jupyter notebook
 - 可调超参数：`sequence_length`、`batch_size`、`hidden_size`、`learning_rate`、`n_epochs`；
 - 训练循环与验证集 NSE 输出；
 - 测试集评估与结果曲线绘制。
+- 随机种子：建议每位同学自定义不同的 `seed`（见 `3_训练.ipynb` 中的 `seed` 变量），用于数据拆分、初始化与打乱，避免作业结果雷同。
 
 ---
 
