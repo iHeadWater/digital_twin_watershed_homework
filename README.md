@@ -6,15 +6,15 @@
 
 - 训练期：1990-09-01 ~ 2000-08-31（与示例一致）
 - 验证期：2000-09-01 ~ 2005-08-31（与示例一致）
-- 及格线：验证集 NSE ≥ 0.50（如课堂另有通知，以课堂口径为准）
+- 及格线：验证集 NSE ≥ 0.10（如课堂另有通知，以课堂口径为准）
 - 原则：在上述训练/验证期下，达到及格线的流域越多，得分越高
 
 | 等级 | 分数区间 | 完成标准 |
 |------|----------|----------|
-| **A** | 90-100分 | >10 个流域达到及格线。综合考虑覆盖率与平均 NSE，覆盖率越高、平均 NSE 越高，得分越高。 |
-| **B** | 80-89分 | 8~10 个流域达到及格线。综合考虑覆盖率与平均 NSE，覆盖率越高、平均 NSE 越高，得分越高。 |
-| **C** | 70-79分 | 4~7 个流域达到及格线。综合考虑覆盖率与平均 NSE，覆盖率越高、平均 NSE 越高，得分越高。 |
-| **D** | 60-69分 | 1~3 个流域达到及格线即达及格。综合考虑覆盖率与平均 NSE，覆盖率越高、平均 NSE 越高，得分越高。 |
+| **A** | 90-100分 | >10 个流域达到及格线。综合考虑流域数量与平均 NSE，流域数量越多、平均 NSE 越高，得分越高。 |
+| **B** | 80-89分 | 8~10 个流域达到及格线。综合考虑流域数量与平均 NSE，流域数量越多、平均 NSE 越高，得分越高。 |
+| **C** | 70-79分 | 4~7 个流域达到及格线。综合考虑流域数量与平均 NSE，流域数量越多、平均 NSE 越高，得分越高。 |
+| **D** | 60-69分 | 1~3 个流域达到及格线即达及格。综合考虑流域数量与平均 NSE，流域数量越多、平均 NSE 越高，得分越高。 |
 | **F** | <60分 | 无流域达到及格线或无有效结果。 |
 
 *每个人随机挑选流域，不能完全重复随机种子和重复流域号，一经发现重复，会检查两人代码，完全重复，本次作业记为0分*
@@ -31,11 +31,84 @@
 
 ## 快速开始
 
-- 登录平台服务器http://jupyterhub.waterism.com:666/，输入用户名和密码，直接运行本项目笔记本。
+### 方式一：服务器运行（推荐）
+
+- 登录平台服务器http://jupyterhub.waterism.com:666/ ，输入用户名和密码，直接运行本项目笔记本。
 - 平台已预置运行环境与依赖，无需安装或配置。
 - 平台已预设 `hydrodataset` 数据目录，可直接运行 `1_获取数据.ipynb` 开始。
+- 建议先在 `1_获取数据.ipynb` 中执行 ROOT_DIR 检查单元，确认路径有效。
 
 > 如需查看或确认数据目录，请参考 `1_获取数据.ipynb` 前置章节中的说明与检查代码。
+
+### 方式二：本地 IDE 运行
+
+- 环境要求
+  - Windows 10/11、macOS 或 Linux
+  - Python 3.9 ~ 3.11（推荐 3.10）
+  - 可选：CUDA 11.8+（如需 GPU，与 PyTorch 版本匹配）
+
+- 使用 conda 安装
+
+```bash
+conda create -n camels python=3.10 -y
+conda activate camels
+pip install -r requirements.txt
+```
+
+- 使用 venv 安装
+
+Windows PowerShell：
+
+```powershell
+python -m venv .venv
+.\\.venv\\Scripts\\Activate.ps1
+pip install -r requirements.txt
+```
+
+macOS/Linux：
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+- 配置 hydrodataset 数据目录（本地必做）
+  - 创建/编辑配置文件：
+    - Windows: `%USERPROFILE%\\.hydrodataset\\settings.txt`
+    - macOS/Linux: `~/.hydrodataset/settings.txt`
+  - 文件内容：仅一行，填写 CAMELS 数据根目录的绝对路径（不加引号）。示例：
+    - Windows: `D:\\data\\hydrodataset`
+    - macOS/Linux: `/data/hydrodataset`
+  - 验证：
+
+```python
+import hydrodataset
+print("数据根目录:", hydrodataset.ROOT_DIR)
+```
+
+  - 目录结构应包含：
+    - `ROOT_DIR/camels/camels_us/camels_streamflow.nc`
+    - `ROOT_DIR/camels/camels_us/camels_daymet_forcing.nc`
+    - `ROOT_DIR/camels/camels_us/camels_attributes_v2.0.feather`
+
+- 数据与包下载（请自行填写链接）
+  - CAMELS 数据下载地址：<https://zenodo.org/records/15529996>
+  - hydrodataset 包：<https://github.com/iHeadWater/hydrodataset>
+  - 下载后将数据解压至上文配置的 `ROOT_DIR`，保持目录结构一致。
+
+- 运行笔记本
+
+```bash
+jupyter notebook
+```
+
+打开 `1_获取数据.ipynb`，按顺序运行。首次运行请先完成“配置 hydrodataset 数据目录”，并先运行“本地数据文件校验”单元。
+
+- 常见问题
+  - `netCDF4` 安装失败：优先使用 `requirements.txt`；仍失败可尝试 `conda install -c conda-forge netcdf4`。
+  - Windows 路径问题：避免中文与空格；`settings.txt` 仅填写绝对路径。
+  - 找不到数据：检查 `settings.txt` 路径与 `camels/camels_us/*.nc` 及属性 `*.feather` 是否存在。
 
 ## 教程结构
 
