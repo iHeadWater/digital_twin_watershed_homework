@@ -2,8 +2,8 @@
 
 本项目为《数字孪生流域》课程作业仓库。仓库包含两个作业，分别存放在不同的 Git 分支中：
 
-- LSTM_camels_homework：作业分支 1，LSTM-CAMELS 流量预测作业
-- prcp_basins_mean_homework：作业分支 2，降雨数据算法与流域平均雨量计算作业
+- prcp_basins_mean_homework：作业1分支，降雨数据算法与流域平均雨量计算作业
+- LSTM_camels_homework：作业2分支，LSTM-CAMELS 流量预测作业
 
 当前分支为默认分支 `main`，用于汇总说明与导航。
 
@@ -34,13 +34,22 @@
 
 完成以上步骤后，进入对应作业目录，按分支内的说明在服务器上安装依赖并运行。
 
-- 从本地上传到服务器：
+- 从本地上传到服务器（使用MobaXterm作为终端）：
 
-```bash
-# macOS/Linux 示例（将本地解压后的目录上传到服务器）
-scp -r ./repo_dir username@server:/path/to/destination
-```
+1) 下载后在本地启动 MobaXterm，使用 SSH 登录到Jupyter服务器（参考教程：https://www.bilibili.com/video/BV1NN4y1K7Np/?spm_id_from=333.337.search-card.all.click&vd_source=a7006391e8ce64981a213708c7c4f1b0）；
 
+2) 在左侧 SFTP 面板中进入服务器上的目标目录（例如 `~/projects/`）；
+
+3) 在本地资源管理器中选中需要上传的文件或文件夹，拖拽到 MobaXterm 的 SFTP 面板中；
+
+4) 等待上传完成。可在 SFTP 面板中右键进行重命名、删除、权限设置等操作；
+
+5) 切换到右侧终端，在上传目录内按照分支的 README.md 说明执行环境安装与运行命令；
+
+*以上为Windows系统下本地上传服务器的操作，macOS系统下可使用Termius替代MobaXterm进行上传，这里不再赘述。*   
+
+此外，也可以在浏览器登录Jupyter服务器，然后在网页直接上传文件。
+   
 - 在服务器直接下载（无需本地中转）：
 
 ```bash
@@ -71,10 +80,10 @@ git branch -a
 
 ```bash
 # 切换到作业1分支
-git switch LSTM_camels_homework
+git switch prcp_basins_mean_homework
 
 # 切换到作业2分支
-git switch prcp_basins_mean_homework
+git switch LSTM_camels_homework
 ```
 
 提示：切换到对应分支后，请仔细阅读该分支下的 README.md，了解环境依赖、数据准备与运行步骤。
@@ -83,10 +92,10 @@ git switch prcp_basins_mean_homework
 
 ```bash
 # 作业1分支（首次本地使用）
-git switch -c LSTM_camels_homework origin/LSTM_camels_homework
+git switch -c prcp_basins_mean_homework origin/prcp_basins_mean_homework
 
 # 作业2分支（首次本地使用）
-git switch -c prcp_basins_mean_homework origin/prcp_basins_mean_homework
+git switch -c LSTM_camels_homework origin/LSTM_camels_homework
 ```
 
 5) 可替代命令（适用于旧版 Git 或习惯用法）：
