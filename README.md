@@ -6,8 +6,8 @@
 
 - 训练期：1990-09-01 ~ 2000-08-31（与示例一致）
 - 验证期：2000-09-01 ~ 2005-08-31（与示例一致）
-- 及格线：验证集 NSE ≥ 0.10（如课堂另有通知，以课堂口径为准）
-- 原则：在上述训练/验证期下，达到及格线的流域越多，得分越高
+- 及格线：验证集 NSE ≥ 0.40（如课堂另有通知，以课堂口径为准）
+- 原则：在上述训练/验证期下，最终评估阶段达到及格线的流域越多，得分越高
 
 | 等级 | 分数区间 | 完成标准 |
 |------|----------|----------|
@@ -92,7 +92,7 @@ print("数据根目录:", hydrodataset.ROOT_DIR)
     - `ROOT_DIR/camels/camels_us/camels_daymet_forcing.nc`
     - `ROOT_DIR/camels/camels_us/camels_attributes_v2.0.feather`
 
-- 数据与包下载（请自行填写链接）
+- 数据与包下载
   - CAMELS 数据下载地址：<https://zenodo.org/records/15529996>
   - hydrodataset 包：<https://github.com/iHeadWater/hydrodataset>
   - 下载后将数据解压至上文配置的 `ROOT_DIR`，保持目录结构一致。
