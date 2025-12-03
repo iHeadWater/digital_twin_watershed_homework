@@ -52,7 +52,7 @@ pip install -r requirements.txt
 - **GFS (Global Forecast System)**: 美国国家气象局全球数值天气预报模式
 - **MSWEP (Multi-Source Weighted-Ensemble Precipitation)**: 多源加权集合降雨再分析数据
 
-**任选一个数据源即可，时间尺度为日尺度或者3h尺度** 
+**任选一个数据源完成即可!! 时间尺度为日尺度或者3h尺度** 
 
 
 ### 第二部分：算法实现与性能对比 (`2_data_processing.ipynb`)
